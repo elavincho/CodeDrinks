@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    margin: 1;
+}
+
+a:hover {
+    background-color: #484848;
+    color: black;
+    border-radius: 10%;
+    
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.side {
+    flex: 30%;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* Main column */
+
+.main {
+    flex: 70%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.fakeimg {
+    background-color: #0f0e0e;
+    width: 100%;
+    padding: 20px;
+}
+
+
+
+/* Footer */
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ffffff;
+}
+
+@media (max-width: 700px) {
+    .row,
+    .navbar {
+        flex-direction: column;
+    }
+    
+}
+
+
+/* administracion */
+
+.cards{
+    display: flex;
+	flex-wrap: wrap; 
+	justify-content: space-between;
+}
+
+.tarjetaAdmin {
+	background: white;
+    margin: 3%;
+    border: solid 2px;
+    border-radius: 10%;
+    text-align: center;
+    color: #000000;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.imgAdmin {
+    margin: 10px;
+}
+
+.tarjetaAdmin:hover{
+    background-color: #484848;
+   
+}
+
+/* tarjeta tragos */
+
+.centrado{
+	margin: 0 auto;
+	padding: 0 0.8em;
+}
+
+@media screen and (min-width: 52em){
+	.centrado{
+		max-width: 52em;
+	}
+}
+
+.tarjeta{
+	background: white;
+    margin: 2%;
+	width: 25%;
+}
+
+.cards{
+	display: flex;
+	flex-wrap: wrap; 
+	justify-content: space-between;
+}
+
+
+.flip-card {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    padding: 10px;
+}
+  
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+  
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+  
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+  
+.flip-card-front {
+    background-color: #ffffff;
+    overflow: hidden;
+}
+.flip-card-front img{
+    max-height: 100%;
+}
+.flip-card-back {
+    background-image: url("static/imagenes/fondo-blanco-elegante-moderno.jpg");
+    color: rgb(0, 0, 0);
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px;
+}
+  
+.card-content {
+    padding: 20px;
+    text-align: center;
+}
+  
+.card-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+  
+.card-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+  
+.attribute{
+    position: absolute;
+    bottom: 10px;
+}
+
+.contenedor-centrado {
+    display:flex;
+    width: 100%;
+    justify-content: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+}
+
+table {
+    max-width: 90%;
+    margin: 0;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #ffffff;
+}
+
+.btnAdmin {
+    color: black;
+}
+
+.nuevaImagen {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+button {
+    padding: 8px;
+    margin:4px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #484848;
+    
+}
+
+a {
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #484848;
+    color: #ffffff;
+}

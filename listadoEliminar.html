@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Code Drinks - Eliminar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link rel="stylesheet" href="estilos.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="px-3 py-2 text-bg-dark border-bottom">
+
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <img src="static/imagenes/CosmopolitanLogo.jpg" alt="logo" width="90"
+                        class="animate__animated animate__bounceInLeft  d-flex align-items-center my-2 my-lg-0 me-lg-auto text-body-dark text-decoration-none">
+
+                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+
+                        <li>
+                            <a href="index.html" class="nav-link text-white">
+                                <img src="static/iconos/casa-blanco.png" width="50" height="50" alt="inicio"
+                                    class="animate__animated animate__bounce">
+                                <br>
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tragos.html" class="nav-link text-white">
+                                <img src="static/iconos/copa-de-coctel-blanco.png" width="50" height="50" alt="tragos"
+                                    class="animate__animated animate__bounce">
+                                <br>
+                                Tragos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="galeria.html" class="nav-link text-white">
+                                <img src="static/iconos/galeria-de-imagenes-blanco.png" width="50" height="50"
+                                    alt="galeria" class="animate__animated animate__bounce">
+                                <br>
+                                Galería
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="ubicacion.html" class="nav-link text-white">
+                                <img src="static/iconos/ubicacion-blanco.png" width="50" height="50"
+                                    alt="ubicacion-blanco" class="animate__animated animate__bounce">
+                                <br>
+                                Ubicación
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="sobre_nosotros.html" class="nav-link text-white">
+                                <img src="static/iconos/sobre-nosotros-blanco.png" width="50" height="50"
+                                    alt="sobre-nosotros-blanco" class="animate__animated animate__bounce">
+                                <br>
+                                About
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="administracion.html" class="nav-link text-white">
+                                <img src="static/iconos/orden-procesada-blanco.png" width="50" height="50"
+                                    alt="administrar" class="animate__animated animate__bounce">
+                                <br>
+                                Admin
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+
+    <!-- Main -->
+
+    <main class="row">
+
+        <div class="side">
+            <h2>Code Drinks</h2>
+            <h4>Un lugar único.</h4>
+
+            <div>
+                <img src="static/iconos/logoCodeDrinksBlanco.png" alt="logoCodeDrinksBlanco" width="180px"
+                    class="fakeimg">
+            </div>
+
+        </div>
+        <div class="main">
+
+            <h2>Eliminar Productos</h2>
+            <br>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>|| Código |</th>
+                            <th>| Nombre del Trago |</th>
+                            <th>| Cantidad |</th>
+                            <th>| Precio |</th>
+                            <th>| Acciones ||</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="producto in productos">
+                            <td>{{ producto.codigo }}</td>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.cantidad }}</td>
+                            <td>{{ producto.precio }}</td>
+                            <td><button @click="eliminarProducto(producto.codigo)">Eliminar</button></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <br>
+                <div>
+                    <button><a href="administracion.html">Volver</a></button>
+                </div>
+
+                <script src="https://unpkg.com/vue@next"></script>
+                <script>
+                    const URL = "http://127.0.0.1:5000/"
+
+                    //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+                    //const URL = "https://USUARIO.pythonanywhere.com/"
+
+
+                    //Vue.createApp para crear nuestra aplicación Vue.
+                    //Define una propiedad productos en el estado de la aplicación Vue. Inicialmente, es un array vacío que almacenará los datos de los productos obtenidos del servidor.
+                    const app = Vue.createApp({
+                        data() {
+                            return {
+                                productos: []
+                            }
+                        },
+                        methods: {
+                            // El método obtenerProductos se utiliza para obtener los productos del servidor. 
+                            obtenerProductos() {
+                                // Obtenemos el contenido del inventario
+                                fetch(URL + 'productos') //Realiza una solicitud GET al servidor y obtener la lista de productos.
+                                    .then(response => {
+                                        // Si es exitosa (response.ok), convierte los datos de la respuesta de formato JSON a un objeto JavaScript.
+                                        if (response.ok) { return response.json(); }
+                                    })
+
+                                    //Asigna los datos de los productos obtenidos a la propiedad productos del estado de Vue.
+                                    .then(data => {
+                                        // El código Vue itera este elemento para generar la tabla
+                                        this.productos = data;
+                                    })
+
+                                    //Captura y maneja errores, mostrando una alerta en caso de error al obtener los productos.
+                                    .catch(error => {
+                                        console.log('Error:', error);
+                                        alert('Error al obtener los productos.');
+                                    });
+                            },
+
+                            //Se utiliza para eliminar un producto.
+                            eliminarProducto(codigo) {
+                                //Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'productos/${codigo}', {method: 'DELETE' }).
+                                if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+                                    fetch(URL + `productos/${codigo}`, { method: 'DELETE' })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                // Si es exitosa (response.ok), elimina el producto y da mensaje de ok.
+                                                this.productos = this.productos.filter(producto => producto.codigo !== codigo);
+                                                alert('Producto eliminado correctamente.');
+                                            }
+                                        })
+
+                                        // En caso de error, mostramos una alerta con un mensaje de error.
+                                        .catch(error => {
+                                            alert(error.message);
+                                        });
+                                }
+                            }
+                        },
+
+                        //Una vez iniciada la app de Vue, se carga el método mounted()
+                        mounted() {
+                            //Se llama al método obtenerProductos para cargar la lista de productos cuando la página se carga por primera vez.
+                            this.obtenerProductos();
+                        }
+                    });
+
+                    //Monta la aplicación Vue en el elemento <body> del DOM. Esto activa Vue en la página, haciendo que sea reactivo y maneje el contenido dinámicamente según los datos y las interacciones del usuario.
+                    app.mount('body');
+                </script>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Code Drinks, Inc</span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+                <a href="https://twitter.com/?lang=es">
+                    <img src="static/iconos/twitter-blanco.png" alt="twitter" width="30">
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-body-dark" href="https://www.facebook.com/?locale=es_LA">
+                    <img src="static/iconos/facebook.png" alt="facebook" width="30">
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-body-dark" href="https://www.instagram.com/">
+                    <img src="static/iconos/instagram.png" alt="instagram" width="30">
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
