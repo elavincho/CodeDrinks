@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="estilos.css">
 
+    <link rel="icon" href="static/iconos/logoCodeDrinksNegro.ico">
+
 </head>
 
 <body>
@@ -135,13 +137,13 @@
                             <input type="number" step="0.01" id="precioModificar" v-model="precio" required><br>
 
                             <!-- Imagen actual del producto -->
-                            <img v-if="imagen_url && !imagenSeleccionada" :src="'./static/imagenes/' + imagen_url"
-                                alt="Imagen del producto" style="max-width: 200px;">
+                            <!-- <img v-if="imagen_url && !imagenSeleccionada" :src="'./static/imagenes/' + imagen_url"
+                                alt="Imagen del producto" style="max-width: 200px;">  -->
 
                             <!-- Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere -->
-                            <!-- <img v-if="imagen_url && !imagenSeleccionada" :src="'https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + imagen_url"
-                    alt="Imagen del producto" style="max-width: 200px;"> -->
-
+                            <img v-if="imagen_url && !imagenSeleccionada"
+                                :src="'https://www.pythonanywhere.com/user/elavincho/files/home/elavincho/mysite/static/imagenes/' + imagen_url"
+                                alt="Imagen del producto" style="max-width: 200px;">
 
                             <!-- Vista previa de la nueva imagen seleccionada -->
                             <img v-if="imagenSeleccionada" :src="imagenUrlTemp" alt="Vista previa de la nueva imagen"
@@ -164,10 +166,10 @@
 
                 <script src="https://unpkg.com/vue@next"></script>
                 <script>
-                    const URL = "http://127.0.0.1:5000/"
+                    //const URL = "http://127.0.0.1:5000/"
 
                     //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-                    //const URL = "https://USUARIO.pythonanywhere.com/"
+                    const URL = "https://elavincho.pythonanywhere.com/"
 
 
                     //Vue.createApp para crear nuestra aplicación Vue.
@@ -293,8 +295,6 @@
                     app.mount('#app');
                 </script>
             </div>
-
-
         </div>
     </main>
 
