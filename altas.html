@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <img src="static/imagenes/CosmopolitanLogo.jpg" alt="logo" width="90"
-                    class="animate__animated animate__bounceInLeft  d-flex align-items-center my-2 my-lg-0 me-lg-auto text-body-dark text-decoration-none">
+                        class="animate__animated animate__bounceInLeft  d-flex align-items-center my-2 my-lg-0 me-lg-auto text-body-dark text-decoration-none">
 
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
 
@@ -110,7 +110,7 @@
             <h2>Alta de Productos</h2>
             <br>
             <div>
-               
+
                 <form id="formulario" enctype="multipart/form-data">
                     <label for="codigo">Código:</label>
                     <input type="text" id="codigo" name="codigo" required><br>
@@ -138,73 +138,74 @@
                     <button><a href="administracion.html">Volver</a></button>
 
                 </form>
+            </div>
 
-                <script>
-                    //const URL = "http://127.0.0.1:5000/"
+            <script>
+                //const URL = "http://127.0.0.1:5000/"
 
-                    //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-                    const URL = "https://elavincho.pythonanywhere.com/"
+                //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+                const URL = "https://elavincho.pythonanywhere.com/"
 
 
-                    // Capturamos el evento de envío del formulario
-                    document.getElementById('formulario').addEventListener('submit', function (event) {
-                        event.preventDefault(); // Evitamos que se envie el form 
+                // Capturamos el evento de envío del formulario
+                document.getElementById('formulario').addEventListener('submit', function (event) {
+                    event.preventDefault(); // Evitamos que se envie el form 
 
-                        var formData = new FormData();
-                        formData.append('codigo', document.getElementById('codigo').value);
-                        formData.append('nombre', document.getElementById('nombre').value);
-                        formData.append('ingredientes', document.getElementById('ingredientes').value);
-                        formData.append('cantidad', document.getElementById('cantidad').value);
-                        formData.append('precio', document.getElementById('precio').value);
-                        formData.append('imagen', document.getElementById('imagenProducto').files[0]);
-                        formData.append('proveedor', document.getElementById('proveedorProducto').value);
+                    var formData = new FormData();
+                    formData.append('codigo', document.getElementById('codigo').value);
+                    formData.append('nombre', document.getElementById('nombre').value);
+                    formData.append('ingredientes', document.getElementById('ingredientes').value);
+                    formData.append('cantidad', document.getElementById('cantidad').value);
+                    formData.append('precio', document.getElementById('precio').value);
+                    formData.append('imagen', document.getElementById('imagenProducto').files[0]);
+                    formData.append('proveedor', document.getElementById('proveedorProducto').value);
 
-                        // Realizamos la solicitud POST al servidor. El método POST se usa para enviar y crear nuevos datos en el servidor.
-                        fetch(URL + 'productos', {
-                            method: 'POST',
-                            body: formData // Aquí enviamos formData. Dado que formData puede contener archivos, no se utiliza JSON.
+                    // Realizamos la solicitud POST al servidor. El método POST se usa para enviar y crear nuevos datos en el servidor.
+                    fetch(URL + 'productos', {
+                        method: 'POST',
+                        body: formData // Aquí enviamos formData. Dado que formData puede contener archivos, no se utiliza JSON.
+                    })
+
+                        //Después de realizar la solicitud POST, se utiliza el método then() para manejar la respuesta del servidor.
+                        .then(function (response) {
+                            if (response.ok) {
+                                //Si la respuesta es exitosa, convierte los datos de la respuesta a formato JSON.
+                                return response.json();
+                            } else {
+                                // Si hubo un error, lanzar explícitamente una excepción
+                                // para ser "catcheada" más adelante
+                                throw new Error('Error al agregar el producto.');
+                            }
                         })
 
-                            //Después de realizar la solicitud POST, se utiliza el método then() para manejar la respuesta del servidor.
-                            .then(function (response) {
-                                if (response.ok) {
-                                    //Si la respuesta es exitosa, convierte los datos de la respuesta a formato JSON.
-                                    return response.json();
-                                } else {
-                                    // Si hubo un error, lanzar explícitamente una excepción
-                                    // para ser "catcheada" más adelante
-                                    throw new Error('Error al agregar el producto.');
-                                }
-                            })
+                        //Respuesta OK, muestra una alerta informando que el producto se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo producto.
+                        .then(function (data) {
+                            alert('Producto agregado correctamente.');
+                        })
 
-                            //Respuesta OK, muestra una alerta informando que el producto se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo producto.
-                            .then(function (data) {
-                                alert('Producto agregado correctamente.');
-                            })
+                        // En caso de error, mostramos una alerta con un mensaje de error.
+                        .catch(function (error) {
+                            alert('Error al agregar el producto.');
+                        })
 
-                            // En caso de error, mostramos una alerta con un mensaje de error.
-                            .catch(function (error) {
-                                alert('Error al agregar el producto.');
-                            })
+                        // Limpiar el formulario en ambos casos (éxito o error)
+                        .finally(function () {
+                            document.getElementById('codigo').value = "";
+                            document.getElementById('nombre').value = "";
+                            document.getElementById('ingredientes').value = "";
+                            document.getElementById('cantidad').value = "";
+                            document.getElementById('precio').value = "";
+                            document.getElementById('imagenProducto').value = "";
+                            document.getElementById('proveedorProducto').value = "";
+                        });
+                })
+            </script>
 
-                            // Limpiar el formulario en ambos casos (éxito o error)
-                            .finally(function () {
-                                document.getElementById('codigo').value = "";
-                                document.getElementById('nombre').value = "";
-                                document.getElementById('ingredientes').value = "";
-                                document.getElementById('cantidad').value = "";
-                                document.getElementById('precio').value = "";
-                                document.getElementById('imagenProducto').value = "";
-                                document.getElementById('proveedorProducto').value = "";
-                            });
-                    })
-                </script>
-            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    
+
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
