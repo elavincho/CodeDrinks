@@ -136,30 +136,6 @@ catalogo = Catalogo(host='elavincho.mysql.pythonanywhere-services.com', user='el
 RUTA_DESTINO = '/home/elavincho/mysite/static/imagenes'
 
 #--------------------------------------------------------------------
-#agrego para actualizar la base de datos automaticamente
-#--------------------------------------------------------------------
-
-import requests
-                        
-username = 'elavincho'
-api_token = 'd5c9b9ab5f0e498d08763121167c82e7dc288a8d'
-domain_name = 'elavincho.pythonanywhere.com'
-
-response = requests.post(
-    'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain_name}/reload/'.format(
-        username = username, domain_name = domain_name
-        ),
-        headers = { 'Authorization': 'Token {token}'.format(token = api_token) }
-        )
-if response.status_code == 200:
-    print('reloaded OK')
-else:
-    print('Got unexpected status code {}: {!r}'.format(response.status_code, response.content))         
-
-#--------------------------------------------------------------------
-
-
-#--------------------------------------------------------------------
 # Listar todos los productos
 #--------------------------------------------------------------------
 
