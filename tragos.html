@@ -158,7 +158,6 @@
             //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
             const URL = "https://elavincho.pythonanywhere.com/"
 
-
             //Vue.createApp para crear nuestra aplicación Vue.
             //Define una propiedad productos en el estado de la aplicación Vue. Inicialmente, es un array vacío que almacenará los datos de los productos obtenidos del servidor.
             const app = Vue.createApp({
@@ -170,6 +169,7 @@
                 methods: {
                     // El método obtenerProductos se utiliza para obtener los productos del servidor. 
                     obtenerProductos() {
+
                         // Obtenemos el contenido del inventario
                         fetch(URL + 'productos') //Realiza una solicitud GET al servidor y obtener la lista de productos.
                             .then(response => {
