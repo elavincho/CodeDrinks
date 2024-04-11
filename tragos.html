@@ -119,7 +119,7 @@
             <h2>Conoce nuestros tragos!</h2>
             <br>
 
-            <section class="cards">
+            <section class="cards" id="body">
 
                 <article class="" v-for="producto in productos">
                     <div class="flip-card">
@@ -150,11 +150,11 @@
             </section>
         </div>
 
+
+
         <!-- <script src="https://unpkg.com/vue@next"></script> deprecada -->
 
         <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
-        <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
 
         <script>
 
@@ -165,7 +165,9 @@
 
             //Vue.createApp para crear nuestra aplicación Vue.
             //Define una propiedad productos en el estado de la aplicación Vue. Inicialmente, es un array vacío que almacenará los datos de los productos obtenidos del servidor.
-            const app = Vue.createApp({
+            // const app =  Vue.createApp({
+            const app = new Vue({
+
                 data() {
                     return {
                         productos: []
@@ -200,11 +202,16 @@
                 mounted() {
                     //Se llama al método obtenerProductos para cargar la lista de productos cuando la página se carga por primera vez.
                     this.obtenerProductos();
-                }
+                },
+
+                //el:  Monta la aplicación en el elemento
+                el: '#body',
             });
 
             //Monta la aplicación Vue en el elemento <body> del DOM. Esto activa Vue en la página, haciendo que sea reactivo y maneje el contenido dinámicamente según los datos y las interacciones del usuario.
-            app.mount('body');
+            // app.mount('body'); deprecado
+
+
         </script>
 
 
