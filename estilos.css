@@ -14,6 +14,39 @@ a:hover {
     
 }
 
+/* Header */
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #2b2929;
+}
+
+.logo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: center;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.iconos {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    justify-content: right;
+}
+
+.iconos img {
+    width: 30px;
+    height: 30px;
+}
+
+
 .row {
     display: flex;
     flex-wrap: wrap;
