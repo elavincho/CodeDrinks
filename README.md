@@ -1,6 +1,8 @@
+<img src="https://github.com/elavincho/CodeDrinks/blob/master/img/codoacodo.png" width="200" height="200" alt="img"/>
+
 # Proyecto Integrador Codo a Codo
 
-En este proyecto realizamos una web de tragos llamada **CodeDrinks**
+En este proyecto realizamos una web de tragos llamada **CodeDrinks** como parte del curso de programación full stack en Python.
 
 ## Tecnologías utilizadas
 
@@ -16,6 +18,8 @@ En este proyecto realizamos una web de tragos llamada **CodeDrinks**
 - **Deploy**:
   - Netlify
   - PythonAnyWhere
+
+**OBS:** Al utilizar la versión gratuita de PythonAnyWhere los datos tardan en cargar.
 
 ## Link del Proyecto
 - https://codedrinks.netlify.app/
