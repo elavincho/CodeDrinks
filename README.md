@@ -13,6 +13,7 @@ En este proyecto realizamos una web de tragos llamada **CodeDrinks** como parte 
  
 - **Backend**:
   - Python
+  - Flask
   - MySQL
 
 - **Deploy**:
